@@ -23,13 +23,14 @@ class CreateUsersTable extends Migration
 
                 $table->string('first_name')->nullable();
                 $table->string('middle_name')->nullable();
-                $table->string('last_name')->nullable(); 
+                $table->string('last_name')->nullable();
+                $table->string('mobile')->nullable(); 
                 $table->string('city')->nullable();
-                
+
                 $table->integer('role_id')->unsigned()->default(3);
                 $table->rememberToken();
                 $table->timestamps();
-            });   
+            });
         }
     }
 

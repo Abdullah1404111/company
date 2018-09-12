@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Project;
+use App\Company;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -20,6 +22,13 @@ class UsersController extends Controller
 
             return view('users.index' ,compact('users'));
         }
+    }
+
+    public function find(Request $request)
+    {
+      $user = User::findOrFail($request->name);
+
+      return view('users.show', compact('user'));
     }
 
     /**
@@ -52,8 +61,11 @@ class UsersController extends Controller
     public function show(User $user)
     {
         $user = User::findOrFail($user->id);
+        $projects = project::where('user_id', $user->id)->get();
+        $companies = company::where('user_id', $user->id)->get();
 
-        return view('users.show', compact('user'));
+
+        return view('users.show', compact('user', 'projects', 'companies'));
     }
 
     /**
@@ -79,7 +91,12 @@ class UsersController extends Controller
         $userUpdate = User::where('id', $user->id);
 
         $userUpdate->update([
+            'first_name' => $request->input('first_name'),
+            'middle_name' => $request->input('middle_name'),
+            'last_name' => $request->input('last_name'),
             'name' => $request->input('name'),
+            'mobile' => $request->input('mobile'),
+            'city' => $request->input('city'),
             'email' => $request->input('email')
         ]);
 

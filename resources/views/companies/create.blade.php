@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <form method="POST" action="/companies">
 						{{ csrf_field() }}
-		
+
 
 						<div class="form-group">
 							<label for="company-name">Name <span class="required">*</span></label>
@@ -30,5 +30,5 @@
             </div>
         </div>
     </div>
-</div>	
+</div>
 @endsection

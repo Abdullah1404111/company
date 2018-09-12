@@ -12,8 +12,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">My Companies &nbsp;&nbsp;&nbsp;&nbsp;<a href="/companies/create" class="crt"><i class="fas fa-plus" ></i> Add new Company</a></div>
+            <div class="card" style="margin-top: 30px;">
+                <div class="card-header">My Companies &nbsp;&nbsp;&nbsp;&nbsp;<a href="/companies/create" class="crt"><i class="fas fa-plus" ></i> Add new</a></div>
 
                 <div class="card-body">
                    @foreach($companies as $company)
@@ -23,5 +23,5 @@
             </div>
         </div>
     </div>
-</div>	
+</div>
 @endsection

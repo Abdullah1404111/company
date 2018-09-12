@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" type="image" href="logo.png">
+    <link rel="shortcut icon" type="image" href="logo.jpg">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -15,7 +15,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">    
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <!-- <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"/>
 
@@ -47,13 +47,14 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
-                        @guest                                                    
+                        @guest
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}"><b>{{ __('Login') }} <i class="fas fa-sign-in-alt"></i> </b></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}"><b>{{ __('Register') }} <i class="fas fa-user-plus"></i></b></a>
                             </li>
+
                         @else
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('companies.index') }}"><b><i class="fas fa-building"></i>&nbsp;{{ __('My Companies') }}&nbsp;|</b></a>
@@ -90,6 +91,15 @@
                             </li>
                             @endif
                             <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="position: relative; padding-left: 10px;">
+                                    <i class="fas fa-bell"></i>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="#"><i class="fas fa-user-edit"></i>&nbsp;&nbsp;Feature not added</a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="position: relative; padding-left: 50px;">
                                     <img src="/uploads/avatars/{{ Auth::user()->avatar }}" style="width: 32px; height: 32px; position: absolute; top: 5px; left: 10px;border-radius: 50%;" />
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -119,7 +129,7 @@
 
             @include('partials.errors')
             @include('partials.success')
-            
+
             <div class="row">
                 @yield('content')
             </div>

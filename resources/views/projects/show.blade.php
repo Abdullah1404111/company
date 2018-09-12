@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <script type="text/javascript">
 	function fun(){
-		
+
 	}
 </script>
 @section('content')
@@ -16,18 +16,18 @@
                 	{{ $project->name }}</h1></div>
 
                 <div class="card-body">
-                   <div>                   	
-						
+                   <div>
+
 						<p class="lead"> {{ $project->description }}</p>
 					</div>
                 </div>
             </div>
 
-            
-            <div class="card">               
+
+            <div class="card">
                 <div class="card-body">
                 @include('partials.comments')
-                   <div class="col-lg-12">                   	
+                   <div class="col-lg-12">
 						<form method="POST" action="{{ route('comments.store') }}">
 							{{ csrf_field() }}
 
@@ -36,27 +36,27 @@
 
 							<div class="form-group">
 								<label for="comment-content">Comment</label>
-								<textarea placeholder="Enter comment" 
-								style="resize: vertical;" 
-								id="comment-content" 
-								name="body" 
-								rows="3" 
-								spellcheck="false" 
+								<textarea placeholder="Enter comment"
+								style="resize: vertical;"
+								id="comment-content"
+								name="body"
+								rows="3"
+								spellcheck="false"
 								class="form-control autosize-target text-left">
-									
+
 								</textarea>
 							</div>
 
 							<div class="form-group">
 								<label for="comment-proof">Proof of work done(Url/Photos)</label>
-								<textarea placeholder="Enter url or screenshot" 
-								style="resize: vertical;" 
-								id="comment-proof" 
+								<textarea placeholder="Enter url or screenshot"
+								style="resize: vertical;"
+								id="comment-proof"
 								name="url"
-								rows="2" 
-								spellcheck="false" 
+								rows="2"
+								spellcheck="false"
 								class="form-control autosize-target text-left">
-									
+
 								</textarea>
 							</div>
 
@@ -86,13 +86,13 @@
 					<input type="hidden" name="_method" value="delete">
 					{{ csrf_field() }}
 				</form>
-			@endif 
+			@endif
 			</ul>
 			<hr>
 			<h4>Add members</h4>
 			<div class="row">
 				<div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-					<form id="add-user" action="{{ route('projects.adduser') }}" method="POST">
+					<form id="add-user" action="/addUser" method="POST">
 					<div class="input-group">
 						<input type="hidden" class="form-control" value="{{ $project->id }}" name="project_id">
 						<input type="text" class="form-control" placeholder="Email . . ." name="email">
@@ -105,13 +105,12 @@
 			</div>
 			<br/>
 			<h4>Team Members</h4>
-			<ol class="list-unstyled">
-				<li><a href="#">Abdullah Al Hossain</a></li>
-				<li><a href="#">Jamshed Hossain</a></li>
-				<li><a href="#">Anwar Hossain</a></li>
-				
+			<ol class="">
+				@foreach($project->users as $user)
+					<li><a href="#">{{ $user->first_name }} {{ $user->middle_name }} {{ $user->last_name }}</a></li>
+				@endforeach
 			</ol>
         </div>
     </div>
-</div>	
+</div>
 @endsection
